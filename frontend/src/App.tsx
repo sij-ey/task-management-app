@@ -6,34 +6,32 @@ import RegisterPage from './pages/RegisterPage';
 import TasksPage from './pages/TasksPage';
 
 function App() {
-const { user, loading } = useAuth();
+  const { user, loading } = useAuth();
 
-const [showRegister, setShowRegister] = useState(false);
+  const [showRegister, setShowRegister] =
+    useState(false);
 
-if (loading) {
-return <p>Loading...</p>;
-}
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-if (!user) {
-if (showRegister) {
-return (
-<RegisterPage
-onRegistered={() => setShowRegister(false)}
-onSwitchToLogin={() => setShowRegister(false)}
-/>
-);
-}
+  if (!user) {
+    if (showRegister) {
+      return (
+        <RegisterPage
+          onLogin={() => setShowRegister(false)}
+        />
+      );
+    }
 
-return (
-  <LoginPage
-    onSwitchToRegister={() => setShowRegister(true)}
-  />
-);
+    return (
+      <LoginPage
+        onRegister={() => setShowRegister(true)}
+      />
+    );
+  }
 
-
-}
-
-return <TasksPage />;
+  return <TasksPage />;
 }
 
 export default App;
