@@ -1,114 +1,280 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Task Manager
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A full-stack task management application built with React, TypeScript, NestJS, PostgreSQL, Prisma, and Firebase Authentication.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Description
 
-## Description
+Task Manager is a full-stack application that allows authenticated users to create, manage, update, complete, and delete their personal tasks.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The application uses Firebase Authentication for user authentication, a NestJS backend for the API, Prisma for database access, and PostgreSQL for persistent task storage.
 
-## Project setup
+Each user's tasks are isolated and protected by Firebase ID token verification on the backend.
 
-```bash
-$ npm install
-```
+Features
+User registration and login with Firebase Authentication
+Protected backend API using Firebase ID token verification
+User-specific task management
+Create tasks
+View tasks
+Edit tasks
+Complete tasks
+Delete tasks
+Task status management
+Optional due dates
+Backend DTO validation
+Responsive React interface
+Loading, empty, and error states
+Persistent task storage with PostgreSQL
+Tech Stack
+Frontend
+React
+TypeScript
+Vite
+Firebase JavaScript SDK
+Backend
+NestJS
+TypeScript
+Prisma
+PostgreSQL
+Firebase Admin SDK
+class-validator
+Authentication
 
-## Compile and run the project
+Firebase Authentication is used by the frontend for user registration and login.
 
-```bash
-# development
-$ npm run start
+After authentication, the frontend obtains a Firebase ID token and sends it to the NestJS backend using the Authorization header:
 
-# watch mode
-$ npm run start:dev
+Authorization: Bearer <Firebase ID token>
 
-# production mode
-$ npm run start:prod
-```
 
-## Run tests
+The NestJS backend verifies the token using Firebase Admin SDK before allowing access to protected task routes.
 
-```bash
-# unit tests
-$ npm run test
+Project Structure
 
-# e2e tests
-$ npm run test:e2e
+The project is organized into separate frontend and backend applications:
 
-# test coverage
-$ npm run test:cov
-```
+task-manager/
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── .env.example
+│   └── package.json
+│
+├── backend/
+│   ├── src/
+│   ├── prisma/
+│   ├── .env.example
+│   └── package.json
+│
+└── README.md
 
-## Deployment
+Project Setup
+Prerequisites
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Make sure the following are installed and configured:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Node.js
+npm
+PostgreSQL
+A Firebase project
+Frontend
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Navigate to the frontend directory:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+cd frontend
 
-## Observability
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+Install dependencies:
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+npm install
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
 
-## Resources
+Create a .env file based on .env.example:
 
-Check out a few resources that may come in handy when working with NestJS:
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+VITE_API_URL=http://localhost:3000
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Start the development server:
 
-## Stay in touch
+npm run dev
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+The frontend normally runs on:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+http://localhost:5173
+
+Backend
+
+Navigate to the backend directory:
+
+cd backend
+
+
+Install dependencies:
+
+npm install
+
+
+Configure the backend environment variables according to the backend .env.example.
+
+Make sure PostgreSQL is running.
+
+Run Prisma migrations:
+
+npx prisma migrate dev
+
+
+Start the backend in development mode:
+
+npm run start:dev
+
+
+The API normally runs on:
+
+http://localhost:3000
+
+Authentication Flow
+
+Authentication follows this flow:
+
+React
+  ↓
+Firebase Authentication
+  ↓
+Firebase ID Token
+  ↓
+Authorization: Bearer <token>
+  ↓
+NestJS
+  ↓
+Firebase Admin verification
+  ↓
+Protected task endpoint
+  ↓
+Prisma
+  ↓
+PostgreSQL
+
+
+Firebase handles user authentication on the frontend, while Firebase Admin SDK verifies authentication tokens on the backend.
+
+Firebase Admin private credentials are kept exclusively on the backend and are never exposed to the frontend.
+
+API Endpoints
+Method	Endpoint	Description
+GET	/tasks	Get the authenticated user's tasks
+POST	/tasks	Create a task
+PATCH	/tasks/:id	Update a task
+DELETE	/tasks/:id	Delete a task
+
+All task endpoints require Firebase authentication.
+
+Task Statuses
+
+Tasks support the following statuses:
+
+TODO
+IN_PROGRESS
+COMPLETED
+
+Validation
+
+The backend validates incoming task data using NestJS DTO validation and class-validator.
+
+Invalid requests are rejected with appropriate HTTP errors instead of being persisted to the database.
+
+Security
+
+The application uses Firebase Authentication and Firebase Admin SDK to protect authenticated resources.
+
+Firebase Authentication handles user credentials.
+Firebase Admin verifies Firebase ID tokens on the backend.
+Protected task routes require authentication.
+Tasks are associated with the authenticated user's identity.
+Users can only access their own tasks.
+Firebase Admin private credentials are never exposed to the frontend.
+Environment files containing secrets are excluded from Git.
+Testing the Application
+
+A basic manual test flow is:
+
+Register a new account.
+Log out.
+Log back in.
+Create a task.
+Edit the task.
+Change its status.
+Complete the task.
+Delete the task.
+Refresh the page.
+Confirm authentication and task persistence behave correctly.
+
+Automated frontend and backend tests can be added as the application evolves.
+
+Production Build
+
+To verify the frontend production build:
+
+cd frontend
+npm run build
+
+
+For the backend, use the NestJS production build and start commands:
+
+npm run build
+npm run start:prod
+
+
+Before deploying to production, make sure PostgreSQL, Firebase credentials, environment variables, and the backend configuration are properly configured.
+
+Deployment
+
+The frontend and backend can be deployed independently to their respective hosting environments.
+
+A production deployment should provide:
+
+A production PostgreSQL database
+Secure Firebase configuration
+Backend Firebase Admin credentials
+Production frontend and API environment variables
+HTTPS
+Database migrations
+Appropriate CORS configuration
+Future Improvements
+
+Potential future improvements include:
+
+Automated frontend and backend tests
+Task filtering and sorting
+Task search
+Pagination
+Password reset UI
+Email verification
+Task categories
+Task priorities
+Improved task organization
+CI/CD
+Production deployment
+Enhanced observability and monitoring
+Resources
+
+For more information about the technologies used in this project:
+
+React documentation
+Vite documentation
+NestJS documentation
+Prisma documentation
+PostgreSQL documentation
+Firebase documentation
+Support
+
+If you encounter an issue while running the application, verify that PostgreSQL is running, the required environment variables are configured, Firebase is correctly set up, and the backend migrations have been applied.
+
+License
