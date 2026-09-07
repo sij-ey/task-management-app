@@ -2,6 +2,10 @@
 
  A full-stack task management application built with React, TypeScript, NestJS, PostgreSQL, Prisma, and Firebase Authentication.
 
+ ## URL
+
+ https://task-management-app-1738.web.app
+
  ## Features
 
  - User registration and login
