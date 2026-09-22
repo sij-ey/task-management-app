@@ -40,7 +40,7 @@
 
  ### 1\. Clone the repository
 
- git clone \<https://github.com/sij-ey/task-management-app\>\
+ git clone https://github.com/sij-ey/task-management-app
  cd task-manager
 
  ### 2\. Frontend
